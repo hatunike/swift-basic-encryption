@@ -13,6 +13,15 @@ func publicKey() -> String {
 	return "public"
 }
 
+func largePrimeNumberGeneration() -> (String, String) {
+	//1 - Get random number
+	//2 - Test isPrime
+
+	//3 - If not isPrime++ test again
+
+}
+
+
 
 
 
