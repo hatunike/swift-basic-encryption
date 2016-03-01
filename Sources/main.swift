@@ -4,8 +4,6 @@ import Foundation
 print("count \(Process.arguments.count)")
 if Process.arguments.count == 2 {
 	let messageToEncrypt = Process.arguments[1]
-	
-	let publicKey = publicKey()
 
 }
 
@@ -18,7 +16,7 @@ func largePrimeNumberGeneration() -> (String, String) {
 	//2 - Test isPrime
 
 	//3 - If not isPrime++ test again
-
+	return ("test","test")
 }
 
 
