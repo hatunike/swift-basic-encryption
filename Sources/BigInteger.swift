@@ -48,6 +48,7 @@ func +(left:[Int], right:[Int]) -> [Int] {
     return result.reverse()
 }
 
+
 struct BigInteger {
     let digits:[Int]
     let isNegative:Bool
@@ -60,9 +61,9 @@ struct BigInteger {
             digits = value.characters.flatMap{Int(String($0))}
         }
     }
-    init(value:[Int]) {
+    init(value:[Int], negative:Bool = false) {
         digits = value
-        isNegative = false
+        isNegative = negative
     }
     
     func description() -> String {
@@ -75,7 +76,7 @@ struct BigInteger {
         case .Positive:
             return BigInteger(value: self.digits + value.digits)
         case .Negative:
-            print("both negative")
+            return BigInteger(value: self.digits + value.digits, negative:true)
         case .Different:
             print("Different")
         }

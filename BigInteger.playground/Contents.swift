@@ -11,23 +11,21 @@ enum TwoNumberSigns {
     
     static func signsForTwoBigIntegers(a:BigInteger, b:BigInteger) -> TwoNumberSigns {
         switch a.isNegative {
-            case true where b.isNegative == true:
-                return .Negative
-            case false where b.isNegative == false:
-                return .Positive
-            default:
-                return .Different
+        case true where b.isNegative == true:
+            return .Negative
+        case false where b.isNegative == false:
+            return .Positive
+        default:
+            return .Different
         }
     }
 }
-
-//It is not possible to overload the default assignment operator (=). Only the compound assignment operators can be overloaded. Similarly, the ternary conditional operator (a ? b : c) cannot be overloaded.
 
 func +(left:[Int], right:[Int]) -> [Int] {
     
     let fewerDigitsReversed:[Int] = left.count < right.count ? left.reverse() : right.reverse()
     let moreDigitsReversed:[Int] = left.count < right.count ? right.reverse() : left.reverse()
-
+    
     var carryOver = 0
     var result = [Int]()
     for (index, moreDigit) in moreDigitsReversed.enumerate() {
@@ -50,6 +48,7 @@ func +(left:[Int], right:[Int]) -> [Int] {
     return result.reverse()
 }
 
+
 struct BigInteger {
     let digits:[Int]
     let isNegative:Bool
@@ -62,9 +61,9 @@ struct BigInteger {
             digits = value.characters.flatMap{Int(String($0))}
         }
     }
-    init(value:[Int]) {
+    init(value:[Int], negative:Bool = false) {
         digits = value
-        isNegative = false
+        isNegative = negative
     }
     
     func description() -> String {
@@ -77,7 +76,7 @@ struct BigInteger {
         case .Positive:
             return BigInteger(value: self.digits + value.digits)
         case .Negative:
-            print("both negative")
+            return BigInteger(value: self.digits + value.digits, negative:true)
         case .Different:
             print("Different")
         }
