@@ -67,7 +67,11 @@ struct BigInteger {
     }
     
     func description() -> String {
-        return digits.flatMap { String($0) }.joinWithSeparator("")
+        if isNegative {
+            return "-" + digits.flatMap { String($0) }.joinWithSeparator("")
+        } else {
+            return digits.flatMap { String($0) }.joinWithSeparator("")
+        }
     }
     
     func add(value:BigInteger) -> BigInteger {
