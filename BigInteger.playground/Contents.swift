@@ -48,6 +48,10 @@ func +(left:[Int], right:[Int]) -> [Int] {
     return result.reverse()
 }
 
+func -(left:[Int], right:[Int]) -> [Int] {
+    return []
+}
+
 
 struct BigInteger {
     let digits:[Int]
