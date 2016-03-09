@@ -7,7 +7,8 @@ var str = "Hello, playground"
 enum TwoNumberSigns {
     case Positive
     case Negative
-    case Different
+    case LeftPositive
+    case RightPositive
     
     static func signsForTwoBigIntegers(a:BigInteger, b:BigInteger) -> TwoNumberSigns {
         switch a.isNegative {
@@ -15,9 +16,12 @@ enum TwoNumberSigns {
             return .Negative
         case false where b.isNegative == false:
             return .Positive
-        default:
-            return .Different
+        case false where b.isNegative == true:
+            return .LeftPositive
+        case true where b.isNegative == false:
+            return .RightPositive
         }
+        
     }
 }
 
@@ -48,8 +52,35 @@ func +(left:[Int], right:[Int]) -> [Int] {
     return result.reverse()
 }
 
+//51
+//35
+
 func -(left:[Int], right:[Int]) -> [Int] {
-    return []
+    let fewerDigitsReversed:[Int] = left.count < right.count ? left.reverse() : right.reverse()
+    let moreDigitsReversed:[Int] = left.count < right.count ? right.reverse() : left.reverse()
+    
+    var carryOver = 0
+    var result = [Int]()
+    for (index, moreDigit) in moreDigitsReversed.enumerate() {
+        var sum = 0
+        var moreDigitCopy = moreDigit
+        if index < fewerDigitsReversed.count {
+            let lowerDigit = fewerDigitsReversed[index]
+            moreDigitCopy = moreDigitCopy - carryOver
+            if moreDigitCopy < lowerDigit {
+                moreDigitCopy = moreDigitCopy + 10
+                carryOver = 1
+            }
+            sum = moreDigitCopy - lowerDigit
+        } else {
+            sum = moreDigitCopy - carryOver
+        }
+        
+        result.append(sum)
+        carryOver = 0
+    }
+    
+    return result.reverse()
 }
 
 
@@ -57,7 +88,7 @@ struct BigInteger {
     let digits:[Int]
     let isNegative:Bool
     
-    init(value:String) {
+    init(value:String, negative:Bool = false) {
         isNegative = value[value.startIndex] == "-" ? true : false
         if isNegative {
             digits = value.characters.dropFirst().flatMap{Int(String($0))}
@@ -85,8 +116,10 @@ struct BigInteger {
             return BigInteger(value: self.digits + value.digits)
         case .Negative:
             return BigInteger(value: self.digits + value.digits, negative:true)
-        case .Different:
-            print("Different")
+        case .RightPositive:
+            print("Right Positive")
+        case .LeftPositive:
+            print("Left Positive")
         }
         return self
     }
@@ -97,6 +130,9 @@ func *(left:BigInteger, right:BigInteger) -> BigInteger {
 }
 
 func +(left:BigInteger, right:BigInteger) -> BigInteger {
+    return left.add(right)
+}
+func -(left:BigInteger, right:BigInteger) -> BigInteger {
     return left.add(right)
 }
 
@@ -117,4 +153,9 @@ result.description()
 
 addResult.description()
 
+let subA = BigInteger(value: "54")
+let subB = BigInteger(value: "21", negative: true)
+
+let subResult = subA - subB
+subResult.description()
 
