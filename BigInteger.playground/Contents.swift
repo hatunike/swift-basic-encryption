@@ -20,8 +20,9 @@ enum TwoNumberSigns {
             return .LeftPositive
         case true where b.isNegative == false:
             return .RightPositive
+        default:
+            return .Positive
         }
-        
     }
 }
 
@@ -118,10 +119,11 @@ struct BigInteger {
             return BigInteger(value: self.digits + value.digits, negative:true)
         case .RightPositive:
             print("Right Positive")
+            return BigInteger(value: self.digits - value.digits, negative: false)
         case .LeftPositive:
             print("Left Positive")
+            return BigInteger(value: self.digits - value.digits, negative: false)
         }
-        return self
     }
 }
 
