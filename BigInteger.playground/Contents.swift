@@ -90,7 +90,13 @@ struct BigInteger {
     let isNegative:Bool
     
     init(value:String, negative:Bool = false) {
-        isNegative = value[value.startIndex] == "-" ? true : false
+        
+        if value[value.startIndex] == "-" {
+            isNegative = true
+        } else {
+            isNegative = negative
+        }
+        
         if isNegative {
             digits = value.characters.dropFirst().flatMap{Int(String($0))}
         } else {
@@ -155,9 +161,10 @@ result.description()
 
 addResult.description()
 
-let subA = BigInteger(value: "54")
+let subA = BigInteger(value: "54", negative: false)
 let subB = BigInteger(value: "21", negative: true)
 
 let subResult = subA - subB
 subResult.description()
 
+TwoNumberSigns.signsForTwoBigIntegers(subA, b: subB)
