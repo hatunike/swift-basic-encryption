@@ -161,8 +161,8 @@ result.description()
 
 addResult.description()
 
-let subA = BigInteger(value: "54", negative: false)
-let subB = BigInteger(value: "21", negative: true)
+let subA = BigInteger(value: "54", negative: true)
+let subB = BigInteger(value: "21", negative: false)
 
 let subResult = subA - subB
 subResult.description()
