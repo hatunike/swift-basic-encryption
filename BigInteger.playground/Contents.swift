@@ -161,10 +161,10 @@ result.description()
 
 addResult.description()
 
-let subA = BigInteger(value: "54", negative: true)
-let subB = BigInteger(value: "21", negative: false)
+let subA = BigInteger(value: "54", negative: false)
+let subB = BigInteger(value: "21", negative: true)
 
-let subResult = subA - subB
+let subResult = subB - subA
 subResult.description()
 
 TwoNumberSigns.signsForTwoBigIntegers(subA, b: subB)
