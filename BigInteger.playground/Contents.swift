@@ -53,6 +53,14 @@ func +(left:[Int], right:[Int]) -> [Int] {
     return result.reverse()
 }
 
+func *(left:[Int], right:[Int]) -> [Int] {
+    return [1]
+}
+
+func /(left:[Int], right:[Int]) -> [Int] {
+    return [1]
+}
+
 //51
 //35
 
