@@ -12,6 +12,7 @@ Current Roadmap
     Division
     Modulus
     isPrimeNumber
+    EulersTotient
 
  RSA
     PrivateKey
