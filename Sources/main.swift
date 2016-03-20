@@ -1,16 +1,18 @@
 
 import Foundation
 
+func publicKey() -> Int {
+	return 3
+}
+
 print("count \(Process.arguments.count)")
 if Process.arguments.count == 2 {
 	let messageToEncrypt = Process.arguments[1]
-	print("Public Key : \("goes here")")
-	print("Encrypted Text : \("goes here")")
+	print("Public Key : \(publicKey())")
+	print("Encrypted Text : SFDNA-\(messageToEncrypt)-FSJDAN")
 }
 
-func publicKey() -> String {
-	return "public"
-}
+
 
 func largePrimeNumberGeneration() -> (String, String) {
 	//1 - Get random number
