@@ -5,10 +5,15 @@ func publicKey() -> Int {
 	return 3
 }
 
+func privateKey() -> Int {
+	return 3
+}
+
 print("count \(Process.arguments.count)")
 if Process.arguments.count == 2 {
 	let messageToEncrypt = Process.arguments[1]
 	print("Public Key : \(publicKey())")
+	print("Private Key : \(privateKey())")
 	print("Encrypted Text : SFDNA-\(messageToEncrypt)-FSJDAN")
 }
 
