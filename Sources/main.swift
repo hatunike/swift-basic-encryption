@@ -6,7 +6,7 @@ func publicKey() -> Int {
 }
 
 func privateKey() -> Int {
-	return 3
+	return 3 * publicKey()
 }
 
 print("count \(Process.arguments.count)")
