@@ -35,3 +35,5 @@ Communication
 
 4 - Build demo UI
 
+5 - develop unit test strategy
+
